@@ -6,6 +6,7 @@ const StyleFileSuffixRegex = new RegExp(/(?!\/node_modules\/)(.+)\.(css|less|scs
 interface Px2RemParams {
 	/**
 	 * 设计稿宽度，默认为 750
+	 * 
 	 * The page width on your design draft. (DEFAULT: 750)
 	 */
 	width?: number;
