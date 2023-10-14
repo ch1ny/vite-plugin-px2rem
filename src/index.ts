@@ -3,22 +3,28 @@ import type { Plugin } from 'vite';
 
 const StyleFileSuffixRegex = new RegExp(/(?!\/node_modules\/)(.+)\.(css|less|scss|sass)$/);
 
-interface Px2RemParams {
+export interface Px2RemParams {
 	/**
 	 * 设计稿宽度，默认为 750
-	 * 
+	 *
 	 * The page width on your design draft. (DEFAULT: 750)
 	 */
 	width?: number;
+	/**
+	 * 默认 rem 像素值，默认为 16px
+	 *
+	 * Default font size pixel value for the root element. (DEFAULT: 16px)
+	 */
+	rootFontSize?: number;
 }
 
 /**
  * Convert `px` into `rem`.
- * @param params 
- * @returns 
+ * @param params
+ * @returns
  */
 export function px2rem(params?: Px2RemParams): Plugin {
-	const { width: designWidth = 750 } = params || {};
+	const { width: designWidth = 750, rootFontSize = 16 } = params || {};
 
 	return {
 		name: 'px2rem',
@@ -70,7 +76,7 @@ window.addEventListener('load', function () {
     
     var style = document.createElement('style');
     style.setAttribute('type', 'text/css');
-    style.innerText = 'body * {font-size: ' + remPx * 0.16 + 'px;};';
+    style.innerText = 'body * {font-size: ' + remPx * ${rootFontSize} / 100 + 'px;};';
     document.head.appendChild(style);
   }
 

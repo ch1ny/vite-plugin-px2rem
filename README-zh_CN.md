@@ -32,6 +32,7 @@ pnpm add vite-plugin-px2rem -D
 ```
 
 在 vite 中使用:
+
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
@@ -39,6 +40,11 @@ import { px2rem } from 'vite-plugin-px2rem';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [px2rem({ width: 750 })],
+	plugins: [
+		px2rem({
+			width: 750,
+			rootFontSize: 16,
+		}),
+	],
 });
 ```
