@@ -23,14 +23,19 @@ Now support `css`, `less` and `sass/scss`.
 Install plugin:
 
 ```bash
+# npm
 npm install vite-plugin-px2rem --save-dev
+# or yarn
+yarn add vite-plugin-px2rem -D
+# or pnpm
+pnpm add vite-plugin-px2rem -D
 ```
 
 Use in vite:
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
-import px2rem from 'vite-plugin-px2rem';
+import { px2rem } from 'vite-plugin-px2rem';
 
 // https://vitejs.dev/config/
 export default defineConfig({

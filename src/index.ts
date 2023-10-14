@@ -12,7 +12,12 @@ interface Px2RemParams {
 	width?: number;
 }
 
-export default function px2rem(params?: Px2RemParams): Plugin {
+/**
+ * Convert `px` into `rem`.
+ * @param params 
+ * @returns 
+ */
+export function px2rem(params?: Px2RemParams): Plugin {
 	const { width: designWidth = 750 } = params || {};
 
 	return {

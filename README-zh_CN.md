@@ -23,14 +23,19 @@
 安装插件:
 
 ```bash
+# npm
 npm install vite-plugin-px2rem --save-dev
+# 或 yarn
+yarn add vite-plugin-px2rem -D
+# 或 pnpm
+pnpm add vite-plugin-px2rem -D
 ```
 
 在 vite 中使用:
 ```typescript
 // vite.config.ts
 import { defineConfig } from 'vite';
-import px2rem from 'vite-plugin-px2rem';
+import { px2rem } from 'vite-plugin-px2rem';
 
 // https://vitejs.dev/config/
 export default defineConfig({

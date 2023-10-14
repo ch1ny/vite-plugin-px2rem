@@ -1,6 +1,6 @@
 {
 	"name": "vite-plugin-px2rem",
-	"version": "1.0.0",
+	"version": "1.0.3",
 	"description": "A vite plugin converts px into rem in your stylesheets.",
 	"main": "lib/index.js",
 	"scripts": {
