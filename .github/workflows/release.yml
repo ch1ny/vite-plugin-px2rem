@@ -1,0 +1,59 @@
+name: RELEASE
+
+# 指定此工作流的触发器
+on:
+  push:
+    # 匹配特定标签 (refs/tags)
+    tags:
+      - 'v*' # 推送事件匹配 v*, 例如 v1.0，v20.15.10 等来触发工作流
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  RELEASE:
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        rust: [stable]
+    env:
+      NODE_VERSION: '18.x'
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://registry.npmjs.org/
+      # 查询版本号（tag）
+      - name: Query version number
+        id: get_version
+        shell: bash
+        # GITHUB_REF "refs/tags/v1.2.3" GITHUB_REF:10 表示从第十位开始截取字符串，得到 v1.2.3
+        run: |
+          echo "using version tag ${GITHUB_REF:10}"
+          echo ::set-output name=version::"${GITHUB_REF:11}"
+      # 安装 pnpm 以及依赖
+      - name: Install Pnpm dependencies
+        run: |
+          npm i -g pnpm
+          pnpm install
+      # 更新 package.json 版本号
+      - name: Update version number
+        run: |
+          node scripts/version.js ${{ steps.get_version.outputs.VERSION }}
+      - name: Publish Plugin
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v${{ steps.get_version.outputs.VERSION }}
+          name: Release v${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_REPOSITORY: ch1ny/vite-plugin-px2rem

@@ -1,0 +1,39 @@
+{
+	"name": "vite-plugin-px2rem",
+	"version": "1.0.0",
+	"description": "A vite plugin converts px into rem in your stylesheets.",
+	"main": "lib/index.js",
+	"scripts": {
+		"build": "tsc",
+		"clean": "tsc -b --clean",
+		"prepublishOnly": "npm run build"
+	},
+	"keywords": [
+		"vite",
+		"plugin",
+		"rem",
+		"px2rem"
+	],
+	"author": "ch1ny",
+	"license": "MIT",
+	"dependencies": {
+		"css-tree": "^2.3.1"
+	},
+	"devDependencies": {
+		"@types/css-tree": "^2.3.2",
+		"@types/node": "^20.8.6",
+		"fs-extra": "^11.1.1",
+		"typescript": "^5.2.2",
+		"vite": "^4.4.11"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/ch1ny/vite-plugin-px2rem.git"
+	},
+	"bugs": {
+		"url": "https://github.com/ch1ny/vite-plugin-px2rem/issues"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
+	}
+}
